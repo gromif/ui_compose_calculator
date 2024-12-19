@@ -2,8 +2,8 @@ package com.nevidimka655.compose_calculator.ui.buttons
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.nevidimka655.compose_calculator.ui.Buttons
 import com.nevidimka655.compose_calculator.ui.ButtonSecondary
+import com.nevidimka655.compose_calculator.ui.Buttons
 
 @Composable
 fun Buttons.ZERO(modifier: Modifier = Modifier, onClick: suspend () -> Unit) = Buttons.ButtonSecondary(
