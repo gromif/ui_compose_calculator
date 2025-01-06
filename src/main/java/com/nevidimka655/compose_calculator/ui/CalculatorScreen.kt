@@ -21,8 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.nevidimka655.compose_calculator.Calculator
 import com.nevidimka655.compose_calculator.CalculatorManager
-import com.nevidimka655.compose_calculator.entities.Action
-import com.nevidimka655.compose_calculator.entities.Operation
+import io.gromif.astracrypt.calculator.domain.Action
+import io.gromif.astracrypt.calculator.domain.Operation
 import com.nevidimka655.compose_calculator.ui.buttons.AC
 import com.nevidimka655.compose_calculator.ui.buttons.ADD
 import com.nevidimka655.compose_calculator.ui.buttons.DECIMAL

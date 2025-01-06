@@ -3,9 +3,9 @@ package com.nevidimka655.compose_calculator
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.nevidimka655.compose_calculator.entities.Action
-import com.nevidimka655.compose_calculator.entities.Operation
-import com.nevidimka655.compose_calculator.entities.State
+import io.gromif.astracrypt.calculator.domain.Action
+import io.gromif.astracrypt.calculator.domain.Operation
+import io.gromif.astracrypt.calculator.domain.State
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
