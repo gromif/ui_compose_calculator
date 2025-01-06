@@ -13,4 +13,6 @@ android {
 
 dependencies {
     implementation(projects.domain.calculator)
+
+    implementation(libs.lifecycle.viewmodel.compose)
 }

@@ -3,17 +3,15 @@ package io.gromif.calculator
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import io.gromif.astracrypt.calculator.domain.Action
 import io.gromif.astracrypt.calculator.domain.Operation
 import io.gromif.astracrypt.calculator.domain.State
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
 
-open class CalculatorManager {
-    private val mutex = Mutex()
+internal class CalculatorViewModel: ViewModel() {
     var state by mutableStateOf(State())
 
-    suspend fun onAction(action: Action) = mutex.withLock {
+    fun onAction(action: Action) {
         when (action) {
             is Action.Number -> enterNumber(action.number)
             is Action.Delete -> delete()
@@ -25,12 +23,10 @@ open class CalculatorManager {
     }
 
     private fun enterOperation(operation: Operation) {
-        if (state.number1.isNotBlank()) {
-            state = state.copy(operation = operation)
-        }
+        if (state.number1.isNotBlank()) state = state.copy(operation = operation)
     }
 
-    open suspend fun calculate() {
+    fun calculate() {
         val number1 = state.number1.toBigDecimalOrNull()
         val number2 = state.number2.toBigDecimalOrNull()
         if (number1 != null && number2 != null) {
@@ -76,18 +72,12 @@ open class CalculatorManager {
 
     private fun enterNumber(number: Int) {
         if (state.operation == null) {
-            if (state.number1.length >= MAX_NUM_LENGTH) {
-                return
-            }
+            if (state.number1.length >= MAX_NUM_LENGTH) return
             state = state.copy(number1 = state.number1 + number)
             return
         }
-        if (state.number2.length >= MAX_NUM_LENGTH) {
-            return
-        }
-        state = state.copy(
-            number2 = state.number2 + number
-        )
+        if (state.number2.length >= MAX_NUM_LENGTH) return
+        state = state.copy(number2 = state.number2 + number)
     }
 
     companion object {

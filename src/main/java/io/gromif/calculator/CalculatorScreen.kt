@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nevidimka655.ui.compose_core.ext.LocalWindowHeight
 import com.nevidimka655.ui.compose_core.ext.isCompact
 import com.nevidimka655.ui.compose_core.theme.spaces
@@ -43,6 +45,17 @@ import io.gromif.calculator.buttons.SUBTRACT
 import io.gromif.calculator.buttons.THREE
 import io.gromif.calculator.buttons.TWO
 import io.gromif.calculator.buttons.ZERO
+
+@Composable
+fun CalculatorScreen(modifier: Modifier = Modifier) {
+    val vm: CalculatorViewModel = viewModel()
+
+    Screen(
+        modifier = modifier,
+        state = vm.state,
+        onAction = { vm.onAction(it) }
+    )
+}
 
 @Composable
 private fun Screen(
