@@ -1,4 +1,4 @@
-package com.nevidimka655.compose_calculator.ui
+package io.gromif.calculator.buttons
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,36 +7,28 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
-import com.nevidimka655.compose_calculator.Calculator
-import kotlinx.coroutines.launch
 
 @Composable
-fun Calculator.Buttons.Button(
+internal fun Buttons.Button(
     symbol: String,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
     textColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     textStyle: TextStyle = TextStyle(),
-    onClick: suspend () -> Unit
+    onClick: () -> Unit
 ) {
-    val coroutineScope = rememberCoroutineScope()
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .clip(CircleShape)
             .background(backgroundColor)
-            .clickable(onClick = {
-                coroutineScope.launch {
-                    onClick()
-                }
-            })
+            .clickable(onClick = onClick)
             .then(modifier)
     ) {
         Text(
@@ -49,11 +41,11 @@ fun Calculator.Buttons.Button(
 }
 
 @Composable
-fun Calculator.Buttons.ButtonTertiary(
+internal fun Buttons.ButtonTertiary(
     symbol: String,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle(),
-    onClick: suspend () -> Unit
+    onClick: () -> Unit
 ) = Button(
     symbol = symbol,
     modifier = modifier,
@@ -64,11 +56,11 @@ fun Calculator.Buttons.ButtonTertiary(
 )
 
 @Composable
-fun Calculator.Buttons.ButtonSecondary(
+internal fun Buttons.ButtonSecondary(
     symbol: String,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle(),
-    onClick: suspend () -> Unit
+    onClick: () -> Unit
 ) = Button(
     symbol = symbol,
     modifier = modifier,

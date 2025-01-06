@@ -1,4 +1,4 @@
-package com.nevidimka655.compose_calculator
+package io.gromif.calculator
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
