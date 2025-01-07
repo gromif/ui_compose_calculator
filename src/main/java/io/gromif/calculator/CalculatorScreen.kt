@@ -47,13 +47,19 @@ import io.gromif.calculator.buttons.TWO
 import io.gromif.calculator.buttons.ZERO
 
 @Composable
-fun CalculatorScreen(modifier: Modifier = Modifier) {
+fun CalculatorScreen(
+    modifier: Modifier = Modifier,
+    onCalculate: (String) -> Unit
+) {
     val vm: CalculatorViewModel = viewModel()
 
     Screen(
         modifier = modifier,
         state = vm.state,
-        onAction = { vm.onAction(it) }
+        onAction = {
+            if (it is Action.Calculate) onCalculate(vm.state.number1)
+            vm.onAction(it)
+        }
     )
 }
 
